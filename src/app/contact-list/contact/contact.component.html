@@ -1,0 +1,16 @@
+<div>
+  <div *ngIf="!isBeingEdited">
+      <span><b>Email</b>: {{contact.email}}</span>
+      <br/>
+      <span><b>FirstName</b>: {{contact.firstName}}</span>
+      <br/>
+      <span><b>SecondName</b>: {{contact.secondName}}</span>
+      <br/>
+      <span><b>Phone Number</b>: {{contact.phoneNumber}}</span>
+      <br/>
+      <span><b>Gender</b>: {{contact.gender}}</span>
+  </div>
+
+  <button (click)="delete()">Delete</button>
+  <button (click)="edit()">Edit</button>
+</div>

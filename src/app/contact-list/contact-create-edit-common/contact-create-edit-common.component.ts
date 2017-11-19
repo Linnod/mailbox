@@ -1,0 +1,66 @@
+import { Component, OnInit, Input } from '@angular/core';
+import { Contact } from '../contact';
+import { Router } from '@angular/router';
+import { ContactService } from '../../services/contact.service';
+import { FormControl } from '@angular/forms';
+
+export abstract class ContactCreateEditCommonComponent {
+
+  protected _contact: Contact;
+
+  @Input()
+  public set contact(contact: Contact) {
+    this._contact = contact;
+  }
+
+  public get contact(): Contact {
+    return this._contact;
+  }
+
+
+  public emailControl: FormControl;
+  public firstNameControl: FormControl;
+  public secondNameControl: FormControl;
+  public phoneNumberControl: FormControl;
+  public genderControl: FormControl;
+
+  constructor(
+    protected router: Router,
+    protected contactService: ContactService
+  ) { }
+
+  public save(): void {
+    this.saveChanges();
+  }
+
+
+  public cancel(): void {
+    this.resetForm();
+    this.router.navigate(['/contacts/']);
+  }
+
+  protected initFormControls(): void {
+    this.emailControl = new FormControl(this.contact.email);
+    this.firstNameControl = new FormControl(this.contact.firstName);
+    this.secondNameControl = new FormControl(this.contact.secondName);
+    this.phoneNumberControl = new FormControl(this.contact.phoneNumber);
+    this.genderControl = new FormControl(this.contact.gender);
+  }
+
+  protected saveChanges(): void {
+    this.contact.email = this.emailControl.value;
+    this.contact.firstName = this.firstNameControl.value;
+    this.contact.secondName = this.secondNameControl.value;
+    this.contact.phoneNumber = this.phoneNumberControl.value;
+    this.contact.gender = this.genderControl.value;
+  }
+
+
+  private resetForm(): void {
+    this.emailControl.reset();
+    this.firstNameControl.reset();
+    this.secondNameControl.reset();
+    this.phoneNumberControl.reset();
+    this.genderControl.reset();
+  }
+}

@@ -1,0 +1,13 @@
+<div>Write new mail:</div>
+<span><b>To</b>: </span><input [formControl]="toControl">
+<br/>
+<span><b>From</b>: </span><input [formControl]="fromControl">
+<br/>
+<span><b>Subject</b>: </span><input [formControl]="subjectControl">
+<br/>
+<span><b>Body</b>: </span><input [formControl]="bodyControl">
+
+<br>
+<button (click)="sendMail()">Send</button>
+
+

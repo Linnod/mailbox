@@ -1,0 +1,6 @@
+<div>
+    <app-contact *ngFor="let contact of contactList" [contact]="contact" (contactDeleted)="deleteContact(contact)"></app-contact>
+</div>
+<br />
+<button (click)="createContact()">Create contact</button>
+

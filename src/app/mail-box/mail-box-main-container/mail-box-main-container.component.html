@@ -1,0 +1,6 @@
+<div *ngIf="mails">Mail subjects:</div>
+<ul>
+  <li *ngFor="let mail of mails">
+    <a routerLink="/mailbox/mails/mail/{{mail.id}}">{{mail.subject}}</a>
+  </li>
+</ul>
