@@ -1,0 +1,11 @@
+<div>Welcome to mailbox!</div>
+<span><b>Login</b>: </span><input [formControl]="loginControl">
+<br/>
+<span><b>Password</b>: </span><input [formControl]="passwordControl" type="password">
+
+<div ng-if="showAuthError">
+  {{authErrorMessage}}
+</div>
+
+<br>
+<button (click)="login()">Send</button>

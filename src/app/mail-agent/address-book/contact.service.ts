@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Contact } from '../contact-list/contact';
 import { Observable } from 'rxjs/Observable';
-import { Gender } from '../contact-list/gender';
 import 'rxjs/add/observable/of';
 import { forEach } from '@angular/router/src/utils/collection';
+import { Gender } from './gender';
+import { Contact } from './contact';
 
 @Injectable()
 export class ContactService {

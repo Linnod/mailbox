@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ContactCreateEditCommonComponent } from './contact-create-edit-common.component';
 
 describe('ContactCreateEditCommonComponent', () => {

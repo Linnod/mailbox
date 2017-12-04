@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-mail-box-navigation-bar',
@@ -7,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MailBoxNavigationBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit() {
   }
-
 }

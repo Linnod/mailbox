@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Contact } from './contact';
-import { Gender } from './gender';
-import { ContactService } from '../services/contact.service';
 import { Router } from '@angular/router';
+import { Contact } from '../contact';
+import { ContactService } from '../contact.service';
+import { Urls } from '../../../urls.consts';
 
 @Component({
   selector: 'app-contact-list',
@@ -30,8 +30,7 @@ export class ContactListComponent implements OnInit {
 
 
   public createContact(): void {
-    const createNewContactUrl = '/contacts/new';
-    this.router.navigate([createNewContactUrl]);
+    this.router.navigate([Urls.contactsCreateContactUrl()]);
   }
 
 

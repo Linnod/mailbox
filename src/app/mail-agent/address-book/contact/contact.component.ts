@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Contact } from '../contact';
 import { Router, Params } from '@angular/router';
-import { ContactService } from '../../services/contact.service';
+import { Urls } from '../../../urls.consts';
 
 @Component({
   selector: 'app-contact',
@@ -39,7 +39,7 @@ export class ContactComponent implements OnInit {
 
 
   public edit(): void {
-    const editUrl = `/contacts/${this.contact.id}/edit`;
+    const editUrl = Urls.contactsEditContactUrl(this.contact.id);
     this.router.navigate([editUrl]);
   }
 }

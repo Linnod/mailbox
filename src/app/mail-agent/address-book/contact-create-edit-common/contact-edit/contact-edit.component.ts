@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Contact } from '../contact';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ContactService } from '../../services/contact.service';
-import { ContactCreateEditCommonComponent } from '../contact-create-edit-common/contact-create-edit-common.component';
+import { ContactCreateEditCommonComponent } from '../contact-create-edit-common.component';
+import { ContactService } from '../../contact.service';
+import { Urls } from '../../../../urls.consts';
 
 @Component({
   selector: 'app-contact-edit',
-  templateUrl: './../contact-create-edit-common/contact-create-edit-common.component.html',
-  styleUrls: ['./../contact-create-edit-common/contact-create-edit-common.component.css']
+  templateUrl: './../contact-create-edit-common.component.html',
+  styleUrls: ['./../contact-create-edit-common.component.css']
 })
 export class ContactEditComponent extends ContactCreateEditCommonComponent implements OnInit {
 
@@ -41,7 +41,7 @@ export class ContactEditComponent extends ContactCreateEditCommonComponent imple
     this.contactService
       .editContact(this.contact)
       .subscribe(response => {
-        this.router.navigate(['/contacts/']);
+        this.router.navigate([Urls.contactsRootUrl()]);
       });
   }
 }

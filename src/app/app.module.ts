@@ -1,36 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { ContactComponent } from './contact-list/contact/contact.component';
-import { ContactListComponent } from './contact-list/contact-list.component';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ContactEditComponent } from './contact-list/contact-edit/contact-edit.component';
-
-import {Routes, RouterModule} from '@angular/router';
-import { ContactService } from './services/contact.service';
-import { ContactCreateComponent } from './contact-list/contact-create/contact-create.component';
-import { ContactCreateEditCommonComponent } from './contact-list/contact-create-edit-common/contact-create-edit-common.component';
-import { MailBoxMainContainerComponent } from './mail-box/mail-box-main-container/mail-box-main-container.component';
-import { MailProviderService } from './mail-box/mail-provider.service';
-import { MailComponent } from './mail-box/mail/mail.component';
-import { MailBoxNavigationBarComponent } from './mail-box/mail-box-navigation-bar/mail-box-navigation-bar.component';
-import { CreateMailComponent } from './mail-box/create-mail/create-mail.component';
+import { Routes, RouterModule } from '@angular/router';
+import { MailBoxMainContainerComponent } from './mail-agent/mail-box/mail-box-main-container/mail-box-main-container.component';
+import { MailProviderService } from './mail-agent//mail-box/mail-provider.service';
+import { MailComponent } from './mail-agent//mail-box/mail/mail.component';
+import { MailBoxNavigationBarComponent } from './mail-agent//mail-box/mail-box-navigation-bar/mail-box-navigation-bar.component';
+import { CreateMailComponent } from './mail-agent//mail-box/create-mail/create-mail.component';
+import { ContactMainPageComponent } from './mail-agent//address-book/contact-main-page/contact-main-page.component';
+import { ContactListComponent } from './mail-agent//address-book/contact-list/contact-list.component';
+import { ContactComponent } from './mail-agent//address-book/contact/contact.component';
+import { ContactCreateComponent } from './mail-agent//address-book/contact-create-edit-common/contact-create/contact-create.component';
+import { ContactEditComponent } from './mail-agent//address-book/contact-create-edit-common/contact-edit/contact-edit.component';
+import { ContactService } from './mail-agent//address-book/contact.service';
+import { ContactCreateEditCommonComponent } from './mail-agent//address-book/contact-create-edit-common/contact-create-edit-common.component';
+import { LoginPageComponent } from './login/login-page/login-page.component';
+import { MailAgentComponent } from './mail-agent/mail-agent.component';
+import { AuthGuard } from './login/auth-guard';
+import { AuthService } from './auth.service';
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'contacts', component: ContactListComponent },
-  { path: 'contacts/new', component: ContactCreateComponent },
-  { path: 'contacts/:id', component: ContactComponent },
-  { path: 'contacts/:id/edit', component: ContactEditComponent },
+  { path: 'login', component: LoginPageComponent },
 
-  { path: 'mailbox', component: MailBoxNavigationBarComponent, children: [
-    { path: ':tab', component: MailBoxMainContainerComponent },
-    { path: 'mails/mail/:id', component: MailComponent },
-    { path: 'mails/new', component: CreateMailComponent, pathMatch: 'full' }
+  { path: '', canActivate: [AuthGuard], component: MailAgentComponent, children: [
+    { path: 'contacts', component: ContactMainPageComponent, children: [
+      { path: 'new', component: ContactCreateComponent },
+      { path: ':id', component: ContactComponent },
+      { path: ':id/edit', component: ContactEditComponent }
+    ]},
+
+    { path: 'mailbox', component: MailBoxNavigationBarComponent, children: [
+      { path: ':tab', component: MailBoxMainContainerComponent },
+      { path: 'mails/mail/:id', component: MailComponent },
+      { path: 'mails/new', component: CreateMailComponent }
+    ]}
   ]}
-
 ];
 
 @NgModule({
@@ -43,7 +48,10 @@ const appRoutes: Routes = [
     MailBoxMainContainerComponent,
     MailComponent,
     MailBoxNavigationBarComponent,
-    CreateMailComponent
+    CreateMailComponent,
+    ContactMainPageComponent,
+    LoginPageComponent,
+    MailAgentComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -53,7 +61,9 @@ const appRoutes: Routes = [
   ],
   providers: [
     ContactService,
-    MailProviderService
+    MailProviderService,
+    AuthGuard,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

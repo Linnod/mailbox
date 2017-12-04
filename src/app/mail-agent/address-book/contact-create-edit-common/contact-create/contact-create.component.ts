@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactCreateEditCommonComponent } from '../contact-create-edit-common/contact-create-edit-common.component';
 import { Router } from '@angular/router';
-import { ContactService } from '../../services/contact.service';
-import { Contact } from '../contact';
+import { ContactCreateEditCommonComponent } from '../contact-create-edit-common.component';
+import { ContactService } from '../../contact.service';
+import { Contact } from '../../contact';
+import { Urls } from '../../../../urls.consts';
 
 @Component({
   selector: 'app-contact-create',
-  templateUrl: './../contact-create-edit-common/contact-create-edit-common.component.html',
-  styleUrls: ['./../contact-create-edit-common/contact-create-edit-common.component.css']
+  templateUrl: './../contact-create-edit-common.component.html',
+  styleUrls: ['./../contact-create-edit-common.component.css']
 })
 export class ContactCreateComponent extends ContactCreateEditCommonComponent  implements OnInit {
 
@@ -30,7 +31,7 @@ export class ContactCreateComponent extends ContactCreateEditCommonComponent  im
     this.contactService
       .createContact(this.contact)
       .subscribe(response => {
-        this.router.navigate(['/contacts/']);
+        this.router.navigate([Urls.contactsRootUrl()]);
       });
   }
 

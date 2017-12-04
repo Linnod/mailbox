@@ -5,6 +5,7 @@ import { MailProviderService } from '../mail-provider.service';
 import { Mail } from '../mail';
 import { MailCategory } from '../mail-category';
 import { Router } from '@angular/router';
+import { Urls } from '../../../urls.consts';
 
 @Component({
   selector: 'app-create-mail',
@@ -37,9 +38,9 @@ export class CreateMailComponent implements OnInit {
 
     this.mailService.sendMail(newMail)
       .subscribe(response => {
-        alert('Mail was succesfull sent!');
+        alert('Mail was succesfully sent!');
         const sentMail = response;
-        this.router.navigate([`/mailbox/mails/mail/${sentMail.id}`]);
+        this.router.navigate([Urls.mailboxGoToMailUrl(sentMail.id)]);
       });
   }
 

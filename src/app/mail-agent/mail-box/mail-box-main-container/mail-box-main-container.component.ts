@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Mail } from '../mail';
 import { MailProviderService } from '../mail-provider.service';
 import { ActivatedRoute } from '@angular/router';
-import { MailBoxes } from '../mailboxes';
+import { MailBoxes } from '../mail-boxes';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

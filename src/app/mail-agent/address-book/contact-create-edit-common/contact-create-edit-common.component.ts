@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Contact } from '../contact';
 import { Router } from '@angular/router';
-import { ContactService } from '../../services/contact.service';
 import { FormControl } from '@angular/forms';
+import { ContactService } from '../contact.service';
+import { Urls } from '../../../urls.consts';
 
 export abstract class ContactCreateEditCommonComponent {
 
@@ -36,7 +37,7 @@ export abstract class ContactCreateEditCommonComponent {
 
   public cancel(): void {
     this.resetForm();
-    this.router.navigate(['/contacts/']);
+    this.router.navigate([Urls.contactsRootUrl()]);
   }
 
   protected initFormControls(): void {
