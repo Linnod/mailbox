@@ -19,6 +19,7 @@ import { LoginPageComponent } from './login/login-page/login-page.component';
 import { MailAgentComponent } from './mail-agent/mail-agent.component';
 import { AuthGuard } from './login/auth-guard';
 import { AuthService } from './auth.service';
+import { GenderPipe } from './mail-agent/address-book/gender.pipe';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     CreateMailComponent,
     ContactMainPageComponent,
     LoginPageComponent,
-    MailAgentComponent
+    MailAgentComponent,
+    GenderPipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

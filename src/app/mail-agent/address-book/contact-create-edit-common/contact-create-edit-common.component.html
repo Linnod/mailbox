@@ -6,7 +6,27 @@
 <br/>
 <span><b>Phone Number</b>: </span><input [formControl]="phoneNumberControl">
 <br/>
-<span><b>Gender</b>: </span><input [formControl]="genderControl">
+<span><b>Gender</b>: </span>
+<label>
+  <input
+    type="radio"
+    name="genderRadioGroup"
+    [formControl]="genderControl"
+    value="0">
+    Male
+</label>
+
+<label>
+  <input
+    type="radio"
+    name="genderRadioGroup"
+    [formControl]="genderControl"
+    value="1">
+    Female
+</label>
+
+<br />
+<br />
 
 <button (click)="cancel()">Cancel</button>
 <button (click)="save()">Save</button>

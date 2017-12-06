@@ -4,6 +4,8 @@ import { ContactCreateEditCommonComponent } from '../contact-create-edit-common.
 import { ContactService } from '../../contact.service';
 import { Contact } from '../../contact';
 import { Urls } from '../../../../urls.consts';
+import { FormControl } from '@angular/forms';
+import { Gender } from '../../gender';
 
 @Component({
   selector: 'app-contact-create',
@@ -24,6 +26,10 @@ export class ContactCreateComponent extends ContactCreateEditCommonComponent  im
     this.initFormControls();
   }
 
+  protected initFormControls(): void {
+    super.initFormControls();
+    this.genderControl = new FormControl(Gender.Male.toString());
+  }
 
   protected saveChanges(): void {
     super.saveChanges();

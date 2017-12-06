@@ -35,6 +35,11 @@ export class ContactEditComponent extends ContactCreateEditCommonComponent imple
   }
 
 
+  protected initFormControls(): void {
+    super.initFormControls();
+    this.genderControl = new FormControl(this.contact.gender.toString());
+  }
+
   protected saveChanges(): void {
     super.saveChanges();
 

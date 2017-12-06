@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ContactService } from '../contact.service';
 import { Urls } from '../../../urls.consts';
+import { Gender } from '../gender';
 
-export abstract class ContactCreateEditCommonComponent {
-
+export abstract class ContactCreateEditCommonComponent implements OnInit {
   protected _contact: Contact;
 
   @Input()
@@ -18,7 +18,6 @@ export abstract class ContactCreateEditCommonComponent {
     return this._contact;
   }
 
-
   public emailControl: FormControl;
   public firstNameControl: FormControl;
   public secondNameControl: FormControl;
@@ -28,7 +27,11 @@ export abstract class ContactCreateEditCommonComponent {
   constructor(
     protected router: Router,
     protected contactService: ContactService
-  ) { }
+  ) {  }
+
+  ngOnInit(): void {
+
+  }
 
   public save(): void {
     this.saveChanges();
@@ -45,7 +48,6 @@ export abstract class ContactCreateEditCommonComponent {
     this.firstNameControl = new FormControl(this.contact.firstName);
     this.secondNameControl = new FormControl(this.contact.secondName);
     this.phoneNumberControl = new FormControl(this.contact.phoneNumber);
-    this.genderControl = new FormControl(this.contact.gender);
   }
 
   protected saveChanges(): void {
@@ -53,15 +55,13 @@ export abstract class ContactCreateEditCommonComponent {
     this.contact.firstName = this.firstNameControl.value;
     this.contact.secondName = this.secondNameControl.value;
     this.contact.phoneNumber = this.phoneNumberControl.value;
-    this.contact.gender = this.genderControl.value;
+    this.contact.gender = parseInt(this.genderControl.value);
   }
-
 
   private resetForm(): void {
     this.emailControl.reset();
     this.firstNameControl.reset();
     this.secondNameControl.reset();
     this.phoneNumberControl.reset();
-    this.genderControl.reset();
   }
 }
